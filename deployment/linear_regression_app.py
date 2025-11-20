@@ -4,8 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import linear_model
 
-df = pd.read_csv("../data/canada.csv")
-st.write(df.head())  # Streamlit-friendly print
+df = pd.read_csv("data/canada.csv")
+st.write(df.head())  
 
 plt.ylabel("per capita income")
 plt.scatter(df["year"], df["per capita income (US$)"], color="red", marker='+')
@@ -14,10 +14,10 @@ reg = linear_model.LinearRegression()
 p = reg.fit(df[["year"]], df["per capita income (US$)"])
 plt.plot(df["year"], reg.predict(df[["year"]]), color='black')
 
-# Show plot in Streamlit
+
 st.pyplot(plt)
 
-# Prediction UI
+
 year = st.number_input("Enter year:", min_value=1900, max_value=2100, value=2025)
 
 if st.button("Predict"):
